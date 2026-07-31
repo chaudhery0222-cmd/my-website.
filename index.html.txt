@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noor-e-Quran Academy — Online Quran Tutor</title>
+<meta name="description" content="Online Quran Academy — Quran with Tajweed, Hifz-e-Quran, Duas, Namaz &amp; Surahs. Local Pakistani &amp; international students welcome.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#122420;
+    --paper:#FAF6EC;
+    --paper-2:#F1EAD8;
+    --emerald:#0E4B3B;
+    --emerald-deep:#0A362A;
+    --teal:#1C7A63;
+    --gold:#C89B3C;
+    --gold-soft:#E4C371;
+    --line:rgba(18,36,32,0.12);
+    --wa-green:#25D366;
+    --max:1160px;
+    --radius:18px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Cairo',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Amiri',serif;
+    font-weight:700;
+    letter-spacing:0.2px;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  ul{list-style:none;}
+  section{padding:100px 24px;position:relative;}
+  .wrap{max-width:var(--max);margin:0 auto;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:13px; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--teal); font-weight:700; margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";width:22px;height:1px;background:var(--gold);
+  }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:16px 30px; border-radius:100px; font-weight:700; font-size:15.5px;
+    cursor:pointer; border:1.5px solid transparent; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--emerald); color:var(--paper); box-shadow:0 10px 24px -8px rgba(14,75,59,0.55);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 16px 30px -8px rgba(14,75,59,0.6);}
+  .btn-gold{background:var(--gold); color:var(--emerald-deep); box-shadow:0 10px 24px -8px rgba(200,155,60,0.5);}
+  .btn-gold:hover{transform:translateY(-2px);}
+  .btn-outline{border-color:var(--emerald); color:var(--emerald);}
+  .btn-outline:hover{background:var(--emerald); color:var(--paper);}
+
+  /* ===== Star motif (signature element) ===== */
+  .star8{
+    position:absolute; opacity:0.10; pointer-events:none;
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(250,246,236,0.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:var(--max); margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{display:flex; align-items:center; gap:12px; font-family:'Amiri',serif; font-weight:700; font-size:22px; color:var(--emerald-deep);}
+  .logo .mark{
+    width:42px;height:42px; border-radius:50%; background:var(--emerald);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .nav-links{display:flex; gap:34px; font-weight:600; font-size:15px;}
+  .nav-links a{position:relative; padding:4px 0; color:var(--ink);}
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-2px; width:0; height:2px;
+    background:var(--gold); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:flex; align-items:center; gap:14px;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:26px; height:2.5px; background:var(--emerald-deep); border-radius:2px;}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:170px 24px 100px; position:relative;
+    background:
+      radial-gradient(circle at 85% 10%, rgba(200,155,60,0.14), transparent 45%),
+      linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+    overflow:hidden;
+  }
+  .hero-grid{
+    max-width:var(--max); margin:0 auto; display:grid;
+    grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;
+  }
+  .bismillah{
+    font-family:'Amiri',serif; font-size:30px; color:var(--gold); margin-bottom:22px; opacity:0.95;
+  }
+  .hero h1{
+    font-size:clamp(38px,5vw,60px); line-height:1.12; color:var(--emerald-deep); margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal; color:var(--teal);}
+  .hero p.lead{font-size:18px; color:#3A4E48; max-width:520px; margin-bottom:34px;}
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:36px;}
+  .hero-badges{display:flex; gap:22px; flex-wrap:wrap;}
+  .hero-badge{display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--emerald-deep);}
+  .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);}
+
+  .hero-art{
+    position:relative; aspect-ratio:1/1; max-width:460px; margin:0 auto;
+  }
+  .hero-art .ring{
+    position:absolute; inset:0; border-radius:50%;
+    border:1.5px dashed rgba(14,75,59,0.25);
+    animation:spin 60s linear infinite;
+  }
+  .hero-art .ring2{inset:38px; border-color:rgba(200,155,60,0.4); animation-duration:44s; animation-direction:reverse;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .hero-art .core{
+    position:absolute; inset:78px; border-radius:50%;
+    background:linear-gradient(160deg, var(--emerald) 0%, var(--emerald-deep) 100%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 30px 60px -20px rgba(10,54,42,0.55);
+  }
+  .hero-art .core svg{width:56%; height:56%;}
+
+  /* ===== MARQUEE STRIP ===== */
+  .strip{
+    background:var(--emerald-deep); color:var(--paper); padding:16px 0; overflow:hidden;
+  }
+  .strip-track{display:flex; gap:60px; white-space:nowrap; animation:scroll-left 26s linear infinite; width:max-content;}
+  .strip-track span{font-family:'Amiri',serif; font-size:16px; color:var(--gold-soft); display:flex; align-items:center; gap:60px;}
+  @keyframes scroll-left{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+  /* ===== SECTION HEADINGS ===== */
+  .sec-head{max-width:640px; margin-bottom:56px;}
+  .sec-head h2{font-size:clamp(30px,4vw,42px); color:var(--emerald-deep);}
+  .sec-head p{color:#4A5D57; font-size:16.5px; margin-top:14px;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* ===== COURSES ===== */
+  .courses{background:var(--paper);}
+  .course-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:22px;
+  }
+  .course-card{
+    background:var(--paper-2); border-radius:var(--radius); padding:32px 24px;
+    border:1px solid var(--line); transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+    position:relative; overflow:hidden;
+  }
+  .course-card:hover{transform:translateY(-8px); box-shadow:0 20px 40px -18px rgba(14,75,59,0.3); background:#fff;}
+  .course-card .num{
+    font-family:'Amiri',serif; font-size:14px; color:var(--gold); font-weight:700; letter-spacing:1px; margin-bottom:18px; display:block;
+  }
+  .course-card .icon-wrap{
+    width:52px;height:52px; border-radius:14px; background:var(--emerald); display:flex; align-items:center; justify-content:center; margin-bottom:20px;
+  }
+  .course-card .icon-wrap svg{width:26px;height:26px; stroke:var(--paper);}
+  .course-card h3{font-size:19px; color:var(--emerald-deep); margin-bottom:10px;}
+  .course-card p{font-size:14.5px; color:#5A6C66;}
+
+  /* ===== ELIGIBILITY / WHO CAN JOIN ===== */
+  .elig{background:var(--emerald-deep); color:var(--paper);}
+  .elig .sec-head h2{color:var(--paper);}
+  .elig .sec-head p{color:rgba(250,246,236,0.75);}
+  .elig-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:50px;}
+  .elig-card{
+    background:rgba(250,246,236,0.06); border:1px solid rgba(250,246,236,0.14); border-radius:var(--radius);
+    padding:30px 26px;
+  }
+  .elig-card .icon-wrap{
+    width:50px;height:50px;border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+  }
+  .elig-card .icon-wrap svg{width:24px;height:24px; stroke:var(--emerald-deep);}
+  .elig-card h3{font-family:'Cairo',sans-serif; font-weight:700; font-size:17px; margin-bottom:8px;}
+  .elig-card p{font-size:14px; color:rgba(250,246,236,0.72);}
+
+  .age-note{
+    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+    background:rgba(200,155,60,0.12); border:1px solid rgba(200,155,60,0.35);
+    border-radius:var(--radius); padding:24px 28px;
+  }
+  .age-note .age-pill{
+    font-family:'Amiri',serif; font-size:26px; font-weight:700; color:var(--gold-soft);
+    background:rgba(10,54,42,0.5); padding:10px 22px; border-radius:100px; flex-shrink:0;
+  }
+  .age-note p{font-size:14.5px; color:rgba(250,246,236,0.85); max-width:640px;}
+
+  /* ===== TIMINGS ===== */
+  .timings{background:var(--paper-2);}
+  .time-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .time-card{
+    background:var(--paper); border-radius:var(--radius); padding:38px 32px; border:1px solid var(--line);
+    position:relative;
+  }
+  .time-card .eyebrow{margin-bottom:10px;}
+  .time-card .clock{font-family:'Amiri',serif; font-size:38px; color:var(--emerald-deep); margin-bottom:8px;}
+  .time-card .pst{font-size:13px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); font-weight:700;}
+  .time-card p.desc{margin-top:14px; font-size:14.5px; color:#5A6C66;}
+  .global-note{
+    margin-top:30px; text-align:center; font-size:15px; color:var(--emerald-deep); font-weight:600;
+  }
+
+  /* ===== WHY US ===== */
+  .why{background:var(--paper);}
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .why-card{text-align:center; padding:20px 14px;}
+  .why-card .icon-wrap{
+    width:64px;height:64px; margin:0 auto 18px; border-radius:50%;
+    background:var(--paper-2); border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center;
+  }
+  .why-card .icon-wrap svg{width:28px;height:28px; stroke:var(--emerald);}
+  .why-card h3{font-size:16.5px; color:var(--emerald-deep); margin-bottom:8px;}
+  .why-card p{font-size:13.5px; color:#5A6C66;}
+
+  /* ===== CONTACT ===== */
+  .contact{
+    background:linear-gradient(160deg, var(--emerald) 0%, var(--emerald-deep) 100%);
+    color:var(--paper); text-align:center;
+  }
+  .contact .bismillah{color:var(--gold-soft);}
+  .contact h2{font-size:clamp(28px,4vw,40px); margin-bottom:16px;}
+  .contact p{color:rgba(250,246,236,0.8); max-width:520px; margin:0 auto 36px; font-size:16px;}
+  .contact-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .contact-number{
+    margin-top:30px; font-family:'Amiri',serif; font-size:22px; letter-spacing:1px; color:var(--gold-soft);
+  }
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--emerald-deep); color:rgba(250,246,236,0.6); padding:40px 24px; text-align:center; font-size:13.5px; border-top:1px solid rgba(250,246,236,0.1);}
+  footer strong{color:var(--gold-soft);}
+
+  /* ===== WHATSAPP FLOAT ===== */
+  .wa-float{
+    position:fixed; right:24px; bottom:24px; z-index:200;
+    width:64px; height:64px; border-radius:50%; background:var(--wa-green);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 12px 28px -6px rgba(37,211,102,0.6);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  .wa-float svg{width:32px;height:32px;}
+  .wa-float .ping{
+    position:absolute; inset:0; border-radius:50%; background:var(--wa-green); opacity:0.5;
+    animation:ping 2.4s ease-out infinite;
+  }
+  @keyframes ping{0%{transform:scale(1); opacity:0.5;} 100%{transform:scale(1.9); opacity:0;}}
+  @keyframes pulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.06);}}
+  .wa-tooltip{
+    position:absolute; right:76px; top:50%; transform:translateY(-50%);
+    background:var(--ink); color:#fff; padding:8px 14px; border-radius:8px; font-size:13px; font-weight:600;
+    white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  .wa-float:hover .wa-tooltip{opacity:1;}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.show{opacity:1; transform:translateY(0);}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr; text-align:center;}
+    .hero p.lead{margin-left:auto; margin-right:auto;}
+    .hero-actions, .hero-badges{justify-content:center;}
+    .hero-art{margin-top:20px;}
+    .course-grid{grid-template-columns:repeat(3,1fr);}
+    .elig-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .time-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:760px){
+    .nav-links{
+      position:fixed; top:74px; left:0; right:0; background:var(--paper);
+      flex-direction:column; padding:20px 24px; gap:20px; border-bottom:1px solid var(--line);
+      transform:translateY(-140%); transition:transform .3s ease; box-shadow:0 20px 30px -20px rgba(0,0,0,0.2);
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-cta .btn-outline{display:none;}
+    .burger{display:flex;}
+    .course-grid{grid-template-columns:repeat(2,1fr);}
+    .elig-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr 1fr;}
+    section{padding:70px 20px;}
+  }
+  @media (max-width:480px){
+    .course-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .wa-float{width:56px;height:56px; right:16px; bottom:16px;}
+    .wa-float svg{width:28px;height:28px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <nav class="nav">
+    <div class="logo">
+      <span class="mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#E4C371"/>
+        </svg>
+      </span>
+      Noor-e-Quran Academy
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#eligibility">Eligibility</a></li>
+      <li><a href="#timings">Timings</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-outline">Enroll Now</a>
+      <button class="burger" id="burgerBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="bismillah">﷽</div>
+      <div class="eyebrow">Online Quran Classes — Available Worldwide</div>
+      <h1>Learn the Quran with <em>Tajweed</em>, from a qualified Female Quran Teacher</h1>
+      <p class="lead">One-on-one online classes in Noorani Qaida, Quran Reading with Tajweed, Hifz-ul-Quran, Daily Duas &amp; Salah, and Basic Islamic Studies — for sisters and children, anywhere in the world.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/923338513976?text=Assalamualaikum%2C%20I%20want%20to%20enroll%20in%20Quran%20classes" target="_blank" class="btn btn-primary">Message on WhatsApp</a>
+        <a href="#courses" class="btn btn-gold">View Courses</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge"><span class="dot"></span>Students Worldwide</div>
+        <div class="hero-badge"><span class="dot"></span>Female Quran Teacher</div>
+        <div class="hero-badge"><span class="dot"></span>Classes via Zoom &amp; WhatsApp</div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="ring"></div>
+      <div class="ring ring2"></div>
+      <div class="core">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4H14C16.7614 4 19 6.23858 19 9C19 11.7614 16.7614 14 14 14H4V4Z" stroke="#F1EAD8" stroke-width="1.4"/>
+          <path d="M4 14H15C17.7614 14 20 16.2386 20 19C20 19.3506 19.9645 19.6928 19.8969 20.0234" stroke="#F1EAD8" stroke-width="1.4"/>
+          <line x1="4" y1="4" x2="4" y2="20" stroke="#E4C371" stroke-width="1.6"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="strip">
+  <div class="strip-track">
+    <span>Tajweed-ul-Quran &#10022; Hifz-e-Quran (30 Para) &#10022; Duas &#10022; Namaz &#10022; Surah Recitation &#10022; Tajweed-ul-Quran &#10022; Hifz-e-Quran (30 Para) &#10022; Duas &#10022; Namaz &#10022; Surah Recitation &#10022;</span>
+  </div>
+</div>
+
+<!-- ================= COURSES ================= -->
+<section class="courses" id="courses">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">What we teach</div>
+      <h2>A complete path, from first letters to full Hifz</h2>
+      <p>Every course is taught one-on-one and paced to the student, whether they are a young beginner or an adult starting later in life.</p>
+    </div>
+    <div class="course-grid">
+      <div class="course-card reveal">
+        <span class="num">01</span>
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11a5 5 0 015 5v11H9a5 5 0 01-5-5V4z"/></svg></div>
+        <h3>Quran with Tajweed</h3>
+        <p>Correct pronunciation and recitation rules (Makharij &amp; Tajweed) taught step by step from Noorani Qaida onward.</p>
+      </div>
+      <div class="course-card reveal">
+        <span class="num">02</span>
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.9 2.3 5 6 5c2 0 3.3 1.1 4 2.3.7-1.2 2-2.3 4-2.3 3.7 0 5.3 3.9 3.5 7.5C19 16.65 12 21 12 21z"/></svg></div>
+        <h3>Duas &amp; Adhkar</h3>
+        <p>Daily masnoon duas for everyday life, memorized with meaning and correct sequence.</p>
+      </div>
+      <div class="course-card reveal">
+        <span class="num">03</span>
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Namaz Training</h3>
+        <p>Correct method of Wudu and Salah, with practical guidance for children and adult beginners.</p>
+      </div>
+      <div class="course-card reveal">
+        <span class="num">04</span>
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M3 12l9 4.5 9-4.5"/><path d="M3 16.5l9 4.5 9-4.5"/></svg></div>
+        <h3>Hifz-e-Quran (30 Para)</h3>
+        <p>Structured memorization program covering the complete Quran with regular revision (Sabaq, Sabqi, Manzil).</p>
+      </div>
+      <div class="course-card reveal">
+        <span class="num">05</span>
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+        <h3>Selected Surahs</h3>
+        <p>Focused memorization and revision of commonly recited Surahs for daily prayer and general life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ELIGIBILITY ================= -->
+<section class="elig" id="eligibility">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Who can join</div>
+      <h2>Classes for children, working women &amp; housewives</h2>
+      <p>Open to local Pakistani students and international students living abroad. No prior Quran knowledge required to start.</p>
+    </div>
+    <div class="elig-grid">
+      <div class="elig-card reveal">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg></div>
+        <h3>Children</h3>
+        <p>Boys aged 4 to 14 years — starting from letter recognition up to Hifz, taught with patience and a child-friendly pace.</p>
+      </div>
+      <div class="elig-card reveal">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 018 0v2"/></svg></div>
+        <h3>Working Women</h3>
+        <p>Evening and flexible time slots designed to fit around office hours and daily routines.</p>
+      </div>
+      <div class="elig-card reveal">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path d="M9 21V12h6v9"/></svg></div>
+        <h3>Housewives</h3>
+        <p>Morning classes that fit alongside home responsibilities, at a comfortable and steady pace.</p>
+      </div>
+    </div>
+    <div class="age-note reveal">
+      <div class="age-pill">4 – 14</div>
+      <p>Age requirement for boys enrolling in the children's program. Working women and housewives of any age are welcome to join without an age limit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIMINGS ================= -->
+<section class="timings" id="timings">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Class schedule</div>
+      <h2>Two convenient sessions, every day</h2>
+      <p>All timings are set in Pakistan Standard Time (PST). International students are welcome — please convert to your local time zone when booking.</p>
+    </div>
+    <div class="time-grid">
+      <div class="time-card reveal">
+        <div class="eyebrow">Morning Session</div>
+        <div class="clock">7:00 AM – 12:30 PM</div>
+        <div class="pst">Pakistan Standard Time</div>
+        <p class="desc">Ideal for housewives, homeschooling children, and early-schedule students.</p>
+      </div>
+      <div class="time-card reveal">
+        <div class="eyebrow">Evening Session</div>
+        <div class="clock">3:00 PM – 6:30 PM</div>
+        <div class="pst">Pakistan Standard Time</div>
+        <p class="desc">Ideal for working women, school-going children, and international students.</p>
+      </div>
+    </div>
+    <p class="global-note reveal">Message us on WhatsApp to confirm a slot that matches your time zone.</p>
+  </div>
+</section>
+
+<!-- ================= WHY US ================= -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow">Why families choose us</div>
+      <h2>Built for a comfortable, consistent learning routine</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>One-on-One Classes</h3>
+        <p>Individual attention, no group distractions.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
+        <h3>Qualified Tutors</h3>
+        <p>Experienced in Tajweed and Hifz instruction.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M8 3v3M16 3v3"/></svg></div>
+        <h3>Flexible Scheduling</h3>
+        <p>Two daily sessions across morning and evening.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Progress Tracking</h3>
+        <p>Regular updates on recitation and memorization.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="bismillah reveal">﷽</div>
+    <h2 class="reveal">Ready to begin the journey?</h2>
+    <p class="reveal">Contact us directly on WhatsApp or call to discuss timings, fees, and to book a trial class — for students in Pakistan and abroad.</p>
+    <div class="contact-actions reveal">
+      <a href="https://wa.me/923338513976?text=Assalamualaikum%2C%20I%20want%20to%20enroll%20in%20Quran%20classes" target="_blank" class="btn btn-gold">Chat on WhatsApp</a>
+      <a href="tel:+923338513976" class="btn" style="background:transparent;border-color:rgba(250,246,236,0.4);color:var(--paper);">Call Now</a>
+    </div>
+    <div class="contact-number reveal">+92 333 8513976</div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p><strong>Noor-e-Quran Academy</strong> — Online Quran Tutoring for Pakistan &amp; International Students</p>
+  <p style="margin-top:8px;">Quran with Tajweed &middot; Duas &middot; Namaz &middot; Hifz-e-Quran (30 Para) &middot; Surahs &nbsp;|&nbsp; +92 333 8513976</p>
+</footer>
+
+<!-- ================= WHATSAPP FLOATING ICON ================= -->
+<a class="wa-float" href="https://wa.me/923338513976?text=Assalamualaikum%2C%20I%20want%20to%20enroll%20in%20Quran%20classes" target="_blank" aria-label="Chat on WhatsApp">
+  <span class="ping"></span>
+  <span class="wa-tooltip">Chat with us</span>
+  <svg viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.912 6.482L4 29l7.72-1.878A11.94 11.94 0 0016.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3zm6.965 17.05c-.29.816-1.44 1.55-2.353 1.744-.62.13-1.43.235-4.15-.892-3.475-1.44-5.71-4.964-5.884-5.196-.174-.232-1.412-1.878-1.412-3.583 0-1.705.894-2.542 1.212-2.89.29-.318.632-.398.843-.398.21 0 .422.002.606.011.194.01.454-.074.71.541.29.7.984 2.404 1.07 2.58.087.174.145.377.03.61-.116.232-.174.377-.348.58-.174.203-.365.454-.522.61-.174.174-.356.363-.153.71.203.348.902 1.49 1.938 2.415 1.332 1.19 2.455 1.558 2.803 1.732.348.174.551.145.755-.087.203-.232.87-1.014 1.102-1.362.232-.348.464-.29.783-.174.318.116 2.02.951 2.367 1.125.348.174.58.26.667.406.087.145.087.842-.203 1.658z"/>
+  </svg>
+</a>
+
+<script>
+  // Mobile menu toggle
+  const burgerBtn = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  burgerBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
